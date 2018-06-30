@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import 'hammerjs';
+import { MatListModule } from '@angular/material/list';
 import { MenuComponent } from './menu/menu.component'
 @NgModule({
   declarations: [
@@ -12,9 +13,10 @@ import { MenuComponent } from './menu/menu.component'
     MenuComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
     BrowserAnimationsModule,
     MatToolbarModule,
+    MatListModule,
     FlexLayoutModule
   ],
   providers: [],
