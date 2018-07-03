@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Dish } from '../shared/dish';
 
-
 const DISH = {
   name: 'Uthappizza',
   image: '/assets/images/uthappizza.png',
@@ -49,12 +48,11 @@ const DISH = {
   styleUrls: ['./dishdetail.component.css',]
 })
 
-export class DishdetailComponent implements OnInit {
 
+  export class DishdetailComponent implements OnInit {
 
-  dish = DISH;
-
-
+    @Input()
+    dish: Dish;
 
   constructor() { }
 
