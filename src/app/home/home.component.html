@@ -1,9 +1,8 @@
-
 <div class="container"
      fxLayout="row"
      fxLayout.sm="column"
      fxLayout.xs="column"
-     fxLayoutAlign.gt-md="space-around center"
+     fxLayoutAlign.gt-mat="space-around center"
      fxLayoutGap="10px">
 
   <mat-card *ngIf="dish" fxFlex>
@@ -15,9 +14,7 @@
     </mat-card-header>
     <img mat-card-image src={{dish.image}} alt={{dish.name}}>
     <mat-card-content>
-      <p>
-        {{dish.description}}
-      </p>
+      <p>{{dish.description}}</p>
     </mat-card-content>
   </mat-card>
 
@@ -30,9 +27,7 @@
     </mat-card-header>
     <img mat-card-image src={{promotion.image}} alt={{promotion.name}}>
     <mat-card-content>
-      <p>
-        {{promotion.description}}
-      </p>
+      <p>{{promotion.description}}</p>
     </mat-card-content>
   </mat-card>
 
@@ -43,12 +38,9 @@
         <h3>{{leader.name | uppercase}}</h3>
       </mat-card-title>
     </mat-card-header>
-    <img mat-card-image src={{leader.image}} alt={{leader.name}} >
+    <img mat-card-image src="{{leader.image}}" alt="{{leader.name}}">
     <mat-card-content>
-      <p>{{leader.designation}} </p>
-      <p>
-        {{leader.description}}
-      </p>
+      <p>{{leader.description}}</p>
     </mat-card-content>
   </mat-card>
 </div>
