@@ -20,6 +20,8 @@ import {
   MatToolbarModule
   } from '@angular/material';
 
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -67,6 +69,7 @@ import {LoginComponent } from './login/login.component';
     MatGridListModule,
     MatInputModule,
     MatListModule,
+    MatProgressSpinnerModule,
     MatToolbarModule,
     MatSelectModule,
     ReactiveFormsModule
