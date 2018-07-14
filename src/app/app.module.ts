@@ -16,6 +16,7 @@ import {
   MatInputModule,
   MatListModule,
   MatSelectModule,
+  MatSliderModule,
   MatSlideToggleModule,
   MatToolbarModule
   } from '@angular/material';
@@ -70,6 +71,8 @@ import {LoginComponent } from './login/login.component';
     MatInputModule,
     MatListModule,
     MatProgressSpinnerModule,
+    MatSliderModule,
+    MatSlideToggleModule,
     MatToolbarModule,
     MatSelectModule,
     ReactiveFormsModule
