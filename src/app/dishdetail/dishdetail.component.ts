@@ -24,6 +24,7 @@ import { Feedback } from '../shared/feedback';
     next: number;
 
     feedbackForm: FormGroup;
+    errMess: string;
 
     formErrors = {
       'author': '',
@@ -46,7 +47,7 @@ import { Feedback } from '../shared/feedback';
        private route: ActivatedRoute,
        private location: Location,
        private fb: FormBuilder,
-      @Inject('BaseURL') private BaseURL) {
+      @Inject('BaseURL') public BaseURL) {
 
        }
 
@@ -55,7 +56,8 @@ import { Feedback } from '../shared/feedback';
       this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
       this.route.params
       .switchMap((params: Params) => this.dishservice.getDish(+params['id']))
-      .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); });
+      .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); },
+      errMess => this.errMess = <any> errMess);
     }
 
     setPrevNext(dishId: number) {
