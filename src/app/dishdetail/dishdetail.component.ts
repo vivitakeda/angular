@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
 import { Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { switchMap } from 'rxjs/operators';
-
+import { switchMap } from 'rxjs/operator/switchMap';
+import 'rxjs/add/operator/switchMap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Feedback } from '../shared/feedback';
 
@@ -45,13 +45,16 @@ import { Feedback } from '../shared/feedback';
     constructor(private dishservice: DishService,
        private route: ActivatedRoute,
        private location: Location,
-       private fb: FormBuilder ) {
-         this.createForm();
+       private fb: FormBuilder,
+      @Inject('BaseURL') private BaseURL) {
+
        }
 
      ngOnInit() {
+      this.createForm();
       this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
-      this.route.params.pipe(switchMap((params: Params) => this.dishservice.getDish(+params['id'])))
+      this.route.params
+      .switchMap((params: Params) => this.dishservice.getDish(+params['id']))
       .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); });
     }
 

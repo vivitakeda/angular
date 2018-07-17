@@ -25,6 +25,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { baseURL } from './shared/baseurl';
 
 import 'hammerjs';
 
@@ -33,6 +34,9 @@ import {MenuComponent} from './menu/menu.component';
 import {DishdetailComponent} from './dishdetail/dishdetail.component';
 import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
+import {HttpClientModule} from '@angular/common/http';
+import { HttpModule } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import {HomeComponent} from './home/home.component';
 import {AboutComponent} from './about/about.component';
 import {ContactComponent} from './contact/contact.component';
@@ -41,6 +45,8 @@ import {DishService} from './services/dish.service';
 import {PromotionService} from './services/promotion.service';
 import {LeaderService} from './services/leader.service';
 import {LoginComponent } from './login/login.component';
+import { Observable } from 'rxjs';
+import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
 
 
 @NgModule({
@@ -62,6 +68,8 @@ import {LoginComponent } from './login/login.component';
     BrowserModule,
     FlexLayoutModule,
     FormsModule,
+    HttpModule,
+    HttpClientModule,
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
@@ -75,16 +83,17 @@ import {LoginComponent } from './login/login.component';
     MatSlideToggleModule,
     MatToolbarModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
   ],
 
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
 ],
 
-  providers: [DishService, PromotionService, LeaderService],
+  providers: [DishService, PromotionService, LeaderService, ProcessHTTPMsgService, {provide: 'BaseURL', useValue: baseURL}],
   entryComponents: [LoginComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }
