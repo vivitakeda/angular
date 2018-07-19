@@ -22,7 +22,7 @@ import { Feedback } from '../shared/feedback';
     dishIds: number[];
     prev: number;
     next: number;
-
+    dishcopy = null;
     feedbackForm: FormGroup;
     errMess: string;
 
@@ -55,10 +55,10 @@ import { Feedback } from '../shared/feedback';
       this.createForm();
       this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
       this.route.params
-      .switchMap((params: Params) => this.dishservice.getDish(+params['id']))
-      .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); },
-      errMess => this.errMess = <any> errMess);
-    }
+      .switchMap((params: Params) =>  this.dishservice.getDish(+params['id']))
+      .subscribe(dish => { this.dish = dish; this.dishcopy = dish; this.setPrevNext(dish.id); },
+          errmess => { this.dish = null; this.errMess = <any>errmess; });
+     }
 
     setPrevNext(dishId: number) {
       const index = this.dishIds.indexOf(dishId);
@@ -95,11 +95,13 @@ import { Feedback } from '../shared/feedback';
            }
           }
     onSubmit() {
-    const feedback = this.feedbackForm.value;
-    feedback['date'] = new Date().toISOString();
-    console.log(feedback);
-    this.dish.comments.push(feedback);
-   this.feedbackForm.reset({
+    const feedbacks = this.feedbackForm.value;
+    feedbacks['date'] = new Date().toISOString();
+    console.log(feedbacks);
+    this.dishcopy.feedback.push(feedbacks);
+    this.dishcopy.save()
+    .subscribe(dish => { this.dish = dish; console.log(this.dish); });
+  this.feedbackForm.reset({
      author: '',
            rating: 5,
       comment: ''
